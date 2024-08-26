@@ -2,6 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\IndexController;
+use App\Http\Controllers\CatalogArticlesController;
+use App\Http\Controllers\ArticlesController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,6 +17,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', IndexController::class );
+
+Route::get('/articles', CatalogArticlesController::class );
+
+Route::get('/articles/{slug}', ArticlesController::class );
