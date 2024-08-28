@@ -4,32 +4,35 @@
 <div class="container">
     <div class="row mt-5 mb-5">
         <h1>Успех</h1>
-        <p>Для молодых и успешных</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam possimus expedita ut et atque quae nihil libero excepturi omnis nam amet provident dolores eaque, ea optio eos minus rerum dicta distinctio id reprehenderit necessitatibus quo praesentium ipsam. Sequi at nisi quo rerum aspernatur non alias officia aut dolor facere ad, voluptatibus, quisquam eligendi blanditiis magni. Atque voluptas omnis unde non nulla ab ullam, doloremque impedit, sit eius obcaecati illo aut, corporis rem dicta laudantium! Quas illo eveniet saepe debitis laboriosam similique rem nulla, cupiditate praesentium. Id deleniti vel sapiente reiciendis debitis delectus, pariatur mollitia, nam cum et, necessitatibus quibusdam rerum.</p>
     </div>
 </div>
 
 <div class="container">
     <div class="row">
-        @foreach ([1, 2, 3, 4, 5, 6] as $v)
-            <div class="col-md-4 mb-5">
-                <div class="card" style="width: 18rem;">
-                    <img src="{{asset('/images/cat.png')}}" class="card-img-top" alt="cat">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                            the card's content.</p>
-                        <div class="d-flex justify-content-between">
-                            <div class="eye d-flex align-items-center">
-                                <span>👁</span>
-                                <span>123</span>
-                            </div>
-                            <button type="button" class="btn btn-light">❤</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        @endforeach
+            @include('components.index-article')
     </div>
 </div>
 
 @include('components._bottom')
+
+<script>
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    $(document).ready(function(){
+        $('.btn-like').click( function(e){
+            let btn = $(e.currentTarget);
+            $.ajax({
+                method: "post",
+                url: "/api/articles/like/" + btn.data('id'),
+                success: function(response){
+                    console.dir(response);
+                    btn.parent().find("span").text(response.likes);
+                }
+            })
+        });
+    });
+</script>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Articles;
 use Illuminate\Http\Request;
 
 class CatalogArticlesController extends Controller
@@ -9,6 +10,9 @@ class CatalogArticlesController extends Controller
     //
     public function __invoke()
     {
-        return view( "catalog" );
+        $pagination = Articles::orderBy('id', 'desc')->paginate(10, page:request()->get('page')??1);
+        // dd(compact('posts'));
+        return view( "catalog", compact('pagination') );
     }
 }
+

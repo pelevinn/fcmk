@@ -16,12 +16,11 @@ return new class extends Migration
             $table->string('title', 255);
             $table->string('subtitle', 255);
             $table->integer('views', false, true);
-            $table->boolean('favorite')->default(0);
+            $table->integer('favorite', false, true);
             $table->string('image', 255);
             $table->text('info');
             $table->timestamps();
         });
-        $this->export();
     }
 
     /**
@@ -32,12 +31,4 @@ return new class extends Migration
         Schema::dropIfExists('articles');
     }
 
-    private function export(){
-        // DB::table("articles")->insert([
-        //     [
-        //         "title" => 'статья',
-        //         "subtitle" =>
-        //     ]
-        // ]);
-    }
 };

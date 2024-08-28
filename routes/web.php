@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\CatalogArticlesController;
 use App\Http\Controllers\ArticlesController;
+use App\Http\Controllers\ArticlesLikeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,3 +23,5 @@ Route::get('/', IndexController::class );
 Route::get('/articles', CatalogArticlesController::class );
 
 Route::get('/articles/{slug}', ArticlesController::class );
+
+Route::post('/api/articles/like/{id}', ArticlesLikeController::class);
