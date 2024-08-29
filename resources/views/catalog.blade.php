@@ -19,5 +19,26 @@
     </div>
 </div>
 
-
 @include('components._bottom')
+
+<script>
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    $(document).ready(function(){
+        $('.btn-like').click( function(e){
+            let btn = $(e.currentTarget);
+            $.ajax({
+                method: "post",
+                url: "/api/articles/like/" + btn.data('id'),
+                success: function(response){
+                    console.dir(response);
+                    btn.parent().find("span").text(response.likes);
+                }
+            })
+        });
+    });
+</script>
+

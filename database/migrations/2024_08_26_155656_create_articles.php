@@ -18,6 +18,7 @@ return new class extends Migration
             $table->integer('views', false, true);
             $table->integer('favorite', false, true);
             $table->string('image', 255);
+            $table->string('article_bg', 255);
             $table->text('info');
             $table->timestamps();
         });

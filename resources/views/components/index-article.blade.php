@@ -4,7 +4,7 @@
             <a href="/articles/{{$article->id}}"><img src="{{asset('/images/cat.png')}}" class="card-img-top" alt="cat"></a>
             <div class="card-body">
                 <a style="text-decoration:none; color:black" href="/articles/{{$article->id}}"><h5 class="card-title">{{$article->title}}</h5>
-                <p class="card-text">{{$article->subtitle}}</p></a>
+                <p class="card-text">{{strlen($article->info) > 100 ? substr($article->info, 0, 100) . '...' : $article->info}}</p></a>
                 <div class="d-flex justify-content-between">
                     <div class="eye d-flex align-items-center">
                         <button type="button" class="btn btn-light">👁</button>
