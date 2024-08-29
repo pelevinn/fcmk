@@ -1,3 +1,9 @@
+@if(isset($tag))
+    Найдено по тегу: <b>#{{ $tag }}</b>
+@endif
+<hr>
+<div>Количество статей: {{ sizeof($pagination) }} из {{$pagination->total()}} </div>
+<hr>
 @foreach ($pagination as $article)
     <div class="col-12 mb-5">
         <div class="card d-flex flex-row">

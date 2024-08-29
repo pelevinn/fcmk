@@ -1,5 +1,6 @@
 <?php
 
+
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\IndexController;
@@ -7,6 +8,8 @@ use App\Http\Controllers\CatalogArticlesController;
 use App\Http\Controllers\ArticlesController;
 use App\Http\Controllers\ArticlesLikeController;
 use App\Http\Controllers\ArticleViewsController;
+use App\Http\Controllers\ArticleCommentsController;
+use App\Http\Controllers\ArticlesTagController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,6 +28,12 @@ Route::get('/articles', CatalogArticlesController::class );
 
 Route::get('/articles/{slug}', ArticlesController::class );
 
+Route::get('/articles/tag/{tag}', ArticlesTagController::class );
+
 Route::post('/api/articles/like/{id}', ArticlesLikeController::class);
 
 Route::post('/api/articles/views/{id}', ArticleViewsController::class);
+
+Route::post('/api/articles/comment/{id}', ArticleCommentsController::class);
+
+

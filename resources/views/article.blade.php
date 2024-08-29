@@ -13,10 +13,7 @@
                     <div class="row">
                         <div class="col-4">
                             <div class="article-tags">
-                                <a href="#" class="btn btn-secondary btn-lg active mb-2" role="button" aria-pressed="true">Город</a>
-                                <a href="#" class="btn btn-secondary btn-lg active mb-2" role="button" aria-pressed="true">Новости</a>
-                                <a href="#" class="btn btn-secondary btn-lg active mb-2" role="button" aria-pressed="true">Транспорт</a>
-                                <a href="#" class="btn btn-secondary btn-lg active mb-2" role="button" aria-pressed="true">Спорт</a>
+                                {!! view_tags($article->tags) !!}
                             </div>
                         </div>
                         <div class="col-8">
@@ -75,6 +72,22 @@
                 }
             })
         }, 5000 );
+        $('.btn-comment').click(function(){
+            var commentTitle = $('.comment-title').val();
+            var commentText = $('.comment-text').val();
+            // alert(`айди ${$('.btn-comment').data('id')}`);
+            $.ajax({
+                method: "post",
+                url: "/api/articles/comment/" + $('.btn-comment').data('id'),
+                data: { title: commentTitle, text: commentText },
+                success: function(response){
+                    $('.comment-wrap').text('Ваше сообщение успешно отправлено');
+                },
+                error: function(){
+                    $('.comment-wrap').text('Ваше сообщение не отправлено');
+                }
+            })
+        });
 
     });
 </script>
