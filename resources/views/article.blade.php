@@ -81,10 +81,10 @@
                 url: "/api/articles/comment/" + $('.btn-comment').data('id'),
                 data: { title: commentTitle, text: commentText },
                 success: function(response){
-                    $('.comment-wrap').text('Ваше сообщение успешно отправлено');
+                    $('.comment-wrap').html('<h2 class="text-center">Ваше сообщение успешно отправлено</h2>');
                 },
                 error: function(){
-                    $('.comment-wrap').text('Ваше сообщение не отправлено');
+                    $('.comment-wrap').html('<h2 class="text-center">Ваше сообщение не отправлено</h2>');
                 }
             })
         });
